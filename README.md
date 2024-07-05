@@ -1,0 +1,19 @@
+# BenBristow.Extensions
+
+Collection of common, useful extension methods
+
+### Installation
+
+To install the library, use the following NuGet command:
+
+```bash
+dotnet add package BenBristow.Extensions
+```
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a pull request or open an issue for any bugs or feature requests.
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
