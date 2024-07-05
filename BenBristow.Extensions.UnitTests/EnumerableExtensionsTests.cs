@@ -13,7 +13,7 @@ public sealed class EnumerableExtensionsTests
         var result = source.WhereIf(condition, Predicate);
 
         // Assert
-        Assert.Equal([2, 4], result);
+        result.Should().BeEquivalentTo(new[] { 2, 4 });
     }
 
     [Fact]
@@ -27,7 +27,7 @@ public sealed class EnumerableExtensionsTests
         var result = source.WhereIf(condition, Predicate);
 
         // Assert
-        Assert.Equal(source, result);
+        result.Should().BeEquivalentTo(source);
     }
 
     private static bool Predicate(int x) => x % 2 == 0;

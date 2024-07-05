@@ -50,5 +50,5 @@ public enum TestEnum
     [Description("Test Description")]
     TestValueWithDescription,
 
-    TestValueWithoutDescription
+    TestValueWithoutDescription,
 }
