@@ -1,5 +1,11 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=0fa7be44_002De550_002D4b96_002D91fd_002D84c560ed39b2/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="All tests from EnumExtensionsTests.cs" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
-  &lt;ProjectFile&gt;AC8F7893-AB45-493B-B616-9E39FE4447C4/f:EnumExtensionsTests.cs&lt;/ProjectFile&gt;
+  &lt;Or&gt;
+    &lt;ProjectFile&gt;AC8F7893-AB45-493B-B616-9E39FE4447C4/f:EnumExtensionsTests.cs&lt;/ProjectFile&gt;
+    &lt;TestAncestor&gt;
+      &lt;TestId&gt;xUnit::AC8F7893-AB45-493B-B616-9E39FE4447C4::net8.0::BenBristow.Extensions.UnitTests.EnumerableExtensionsTests&lt;/TestId&gt;
+      &lt;TestId&gt;xUnit::AC8F7893-AB45-493B-B616-9E39FE4447C4::net8.0::BenBristow.Extensions.UnitTests.QueryableExtensionsTests&lt;/TestId&gt;
+    &lt;/TestAncestor&gt;
+  &lt;/Or&gt;
 &lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/Highlighting/HighlightingSourceSnapshotLocation/@EntryValue">/Users/benjaminbristow/Library/Caches/JetBrains/Rider2024.1/resharper-host/temp/Rider/vAny/CoverageData/_BenBristow.Extensions.EnumDescriptions.1983088220/Snapshot/snapshot.utdcvr</s:String></wpf:ResourceDictionary>
+	</wpf:ResourceDictionary>
