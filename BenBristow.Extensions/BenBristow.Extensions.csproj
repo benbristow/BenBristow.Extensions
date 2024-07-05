@@ -5,6 +5,7 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <Title>BenBristow.Extensions</Title>
         <Authors>Ben Bristow</Authors>
         <Description>Collection of common, useful extension methods</Description>
@@ -13,7 +14,7 @@
         <PackageProjectUrl>https://github.com/benbristow/Extensions</PackageProjectUrl>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <LangVersion>default</LangVersion>
-        <Version>1.0.2</Version>
+        <Version>1.0.3</Version>
     </PropertyGroup>
 
     <ItemGroup>
