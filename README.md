@@ -1,5 +1,7 @@
 # BenBristow.Extensions
 
+[![Build/Test/Publish](https://github.com/benbristow/Extensions/actions/workflows/cicd.yml/badge.svg)](https://github.com/benbristow/Extensions/actions/workflows/cicd.yml)
+
 Collection of common, useful extension methods
 
 ### Installation
