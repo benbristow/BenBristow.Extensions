@@ -31,7 +31,7 @@ public sealed class EnumExtensionsTests
     }
 
     [Fact]
-    public void GetDescriptions_CalledWithInvalidEnumType_ThrowsArgumentException()
+    public void GetDescription_CalledWithInvalidEnumType_ThrowsArgumentException()
     {
         // Arrange
         const TestEnum invalidEnumValue = (TestEnum) 100;
@@ -40,9 +40,9 @@ public sealed class EnumExtensionsTests
         Action act = () => invalidEnumValue.GetDescription();
 
         // Assert
-        act.Should().Throw<ArgumentException>();
+        act.Should().Throw<ArgumentOutOfRangeException>()
+            .WithMessage("Invalid enum value*");
     }
-
 }
 
 public enum TestEnum
