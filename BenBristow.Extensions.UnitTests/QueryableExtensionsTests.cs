@@ -1,4 +1,3 @@
-using System.Linq.Expressions;
 using BenBristow.Extensions.Enums;
 
 namespace BenBristow.Extensions.UnitTests;
@@ -33,14 +32,6 @@ public sealed class QueryableExtensionsTests
         { (TestSortField.Id, SortDirection.Descending), q => q.OrderByDescending(t => t.Id) },
         { (TestSortField.Title, SortDirection.Ascending), q => q.OrderBy(t => t.Title.ToLower()) },
         { (TestSortField.Title, SortDirection.Descending), q => q.OrderByDescending(t => t.Title.ToLower()) },
-    };
-
-    private static Expression<Func<TestClass, object>> DefaultSort(TestSortField? field) => field switch
-    {
-        TestSortField.Id => t => t.Id,
-        TestSortField.Title => t => t.Title.ToLower(),
-        null => t => t.Id,
-        _ => throw new ArgumentOutOfRangeException(nameof(field), "Invalid sort field"),
     };
 
     #endregion
@@ -118,7 +109,7 @@ public sealed class QueryableExtensionsTests
         var queryable = TestData.AsQueryable();
 
         // Act
-        var result = queryable.OrderBy(sortField, sortDirection, OrderConfig, DefaultSort).ToList();
+        var result = queryable.OrderBy(sortField, sortDirection, OrderConfig, t => t.Id).ToList();
 
         // Assert
         result.Select(t => t.Id).Should().BeEquivalentTo(expectedOrder, options => options.WithStrictOrdering());
@@ -133,7 +124,7 @@ public sealed class QueryableExtensionsTests
         var queryable = TestData.AsQueryable();
 
         // Act
-        var result = queryable.OrderBy(sortField, sortDirection, OrderConfig, DefaultSort).ToList();
+        var result = queryable.OrderBy(sortField, sortDirection, OrderConfig, t => t.Title.ToLower()).ToList();
 
         // Assert
         result.Select(t => t.Title).Should().BeEquivalentTo(expectedOrder, options => options.WithStrictOrdering());
@@ -146,7 +137,7 @@ public sealed class QueryableExtensionsTests
         var queryable = TestData.AsQueryable();
 
         // Act
-        var result = queryable.OrderBy(null, SortDirection.Ascending, OrderConfig, DefaultSort).ToList();
+        var result = queryable.OrderBy(null, SortDirection.Ascending, OrderConfig, t => t.Id).ToList();
 
         // Assert
         result.Select(t => t.Id).Should().BeEquivalentTo(new[] { 1, 2, 3 }, options => options.WithStrictOrdering());
@@ -159,7 +150,7 @@ public sealed class QueryableExtensionsTests
         var queryable = TestData.AsQueryable();
 
         // Act
-        var result = queryable.OrderBy(null, SortDirection.Descending, OrderConfig, DefaultSort).ToList();
+        var result = queryable.OrderBy(null, SortDirection.Descending, OrderConfig, t => t.Id).ToList();
 
         // Assert
         result.Select(t => t.Id).Should().BeEquivalentTo(new[] { 3, 2, 1 }, options => options.WithStrictOrdering());
@@ -172,7 +163,7 @@ public sealed class QueryableExtensionsTests
         var queryable = TestData.AsQueryable();
 
         // Act
-        var result = queryable.OrderBy(TestSortField.Id, null, OrderConfig, DefaultSort).ToList();
+        var result = queryable.OrderBy(TestSortField.Id, null, OrderConfig, t => t.Id).ToList();
 
         // Assert
         result.Select(t => t.Id).Should().BeEquivalentTo(new[] { 1, 2, 3 }, options => options.WithStrictOrdering());
@@ -185,7 +176,7 @@ public sealed class QueryableExtensionsTests
         var queryable = TestData.AsQueryable();
 
         // Act
-        var result = queryable.OrderBy(null, null, OrderConfig, DefaultSort).ToList();
+        var result = queryable.OrderBy(null, null, OrderConfig, t => t.Id).ToList();
 
         // Assert
         result.Select(t => t.Id).Should().BeEquivalentTo(new[] { 1, 2, 3 }, options => options.WithStrictOrdering());
@@ -199,7 +190,7 @@ public sealed class QueryableExtensionsTests
         const SortDirection invalidSortDirection = (SortDirection)999;
 
         // Act & Assert
-        queryable.Invoking(q => q.OrderBy(TestSortField.Id, invalidSortDirection, OrderConfig, DefaultSort).ToList())
+        queryable.Invoking(q => q.OrderBy(TestSortField.Id, invalidSortDirection, OrderConfig, t => t.Id).ToList())
             .Should().Throw<ArgumentException>()
             .WithMessage("Sort configuration not found for field Id and direction 999");
     }
@@ -215,7 +206,7 @@ public sealed class QueryableExtensionsTests
         };
 
         // Act & Assert
-        queryable.Invoking(q => q.OrderBy(TestSortField.Title, SortDirection.Descending, incompleteOrderConfig, DefaultSort).ToList())
+        queryable.Invoking(q => q.OrderBy(TestSortField.Title, SortDirection.Descending, incompleteOrderConfig, t => t.Id).ToList())
             .Should().Throw<ArgumentException>()
             .WithMessage("Sort configuration not found for field Title and direction Descending");
     }
