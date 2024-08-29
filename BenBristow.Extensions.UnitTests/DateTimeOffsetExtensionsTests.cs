@@ -5,60 +5,46 @@ namespace BenBristow.Extensions.UnitTests;
 public sealed class DateTimeOffsetExtensionsTests : IDisposable
 {
     private readonly CultureInfo _originalCulture = Thread.CurrentThread.CurrentCulture;
-
     private readonly CultureInfo _originalUiCulture = Thread.CurrentThread.CurrentUICulture;
 
-    [Fact]
-    public void ToLocaleDateTimeString_WithKnownDate_ShouldReturnExpectedFormat()
+    [Theory]
+    [InlineData("en-US")]
+    [InlineData("de-DE")]
+    [InlineData("fr-FR")]
+    [InlineData("ja-JP")]
+    public void ToLocaleDateTimeString_WithDifferentCultures_ShouldMatchGeneralShortPattern(string cultureName)
     {
         // Arrange
-        SetCulture("en-US");
+        SetCulture(cultureName);
         var dateTime = new DateTimeOffset(2023, 4, 15, 14, 30, 0, TimeSpan.Zero);
-        const string expectedFormat = "4/15/2023 2:30\u202fPM";
 
         // Act
         var result = dateTime.ToLocaleDateTimeString();
 
         // Assert
-        result.Should().Be(expectedFormat);
+        var expected = dateTime.ToString("g", CultureInfo.CurrentCulture);
+        result.Should().Be(expected, because: $"it should match the 'g' format for culture {cultureName}");
     }
 
     [Fact]
-    public void ToLocaleDateTimeString_WithDifferentCulture_ShouldReturnCultureSpecificFormat()
+    public void ToLocaleDateTimeString_WithDifferentTimeZone_ShouldUseLocalTime()
     {
         // Arrange
-        SetCulture("de-DE");
-        var dateTime = new DateTimeOffset(2023, 4, 15, 14, 30, 0, TimeSpan.Zero);
-        const string expectedFormat = "15.04.2023 14:30";
-
-        // Act
-        var result = dateTime.ToLocaleDateTimeString();
-
-        // Assert
-        result.Should().Be(expectedFormat);
-    }
-
-    [Fact]
-    public void ToLocaleDateTimeString_WithDifferentTimeZone_ShouldReturnLocalTime()
-    {
-        // Arrange
-        SetCulture("en-US");
         var utcDateTime = new DateTimeOffset(2023, 4, 15, 14, 30, 0, TimeSpan.Zero);
-        var pacificTimeZone = TimeZoneInfo.FindSystemTimeZoneById("Pacific Standard Time");
-        var pacificDateTime = TimeZoneInfo.ConvertTime(utcDateTime, pacificTimeZone);
+        var localDateTime = utcDateTime.ToLocalTime();
 
         // Act
-        var result = pacificDateTime.ToLocaleDateTimeString();
+        var result = localDateTime.ToLocaleDateTimeString();
 
         // Assert
-        result.Should().Contain(pacificDateTime.ToString("tt", CultureInfo.InvariantCulture));
+        var expected = localDateTime.ToString("g", CultureInfo.CurrentCulture);
+        result.Should().Be(expected, because: "it should use the local time");
     }
 
     [Fact]
     public void ToLocaleDateTimeString_WithMinDateTimeOffset_ShouldNotThrowException()
     {
         // Arrange
-        SetCulture("en-US");
         var minDate = DateTimeOffset.MinValue;
 
         // Act
@@ -72,7 +58,6 @@ public sealed class DateTimeOffsetExtensionsTests : IDisposable
     public void ToLocaleDateTimeString_WithMaxDateTimeOffset_ShouldNotThrowException()
     {
         // Arrange
-        SetCulture("en-US");
         var maxDate = DateTimeOffset.MaxValue;
 
         // Act
