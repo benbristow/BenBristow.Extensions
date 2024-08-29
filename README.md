@@ -2,7 +2,7 @@
 
 [![Build/Test/Publish](https://github.com/benbristow/Extensions/actions/workflows/cicd.yml/badge.svg)](https://github.com/benbristow/Extensions/actions/workflows/cicd.yml)
 
-Collection of common, useful extension methods
+Collection of common, useful extension methods & attributes for .NET.
 
 ### Installation
 
