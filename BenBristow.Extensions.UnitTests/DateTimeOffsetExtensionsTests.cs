@@ -6,6 +6,8 @@ public sealed class DateTimeOffsetExtensionsTests : IDisposable
 {
     private readonly CultureInfo _originalCulture = Thread.CurrentThread.CurrentCulture;
 
+    private readonly CultureInfo _originalUiCulture = Thread.CurrentThread.CurrentUICulture;
+
     [Fact]
     public void ToLocaleDateTimeString_WithKnownDate_ShouldReturnExpectedFormat()
     {
@@ -80,11 +82,16 @@ public sealed class DateTimeOffsetExtensionsTests : IDisposable
         act.Should().NotThrow();
     }
 
-    public void Dispose() => Thread.CurrentThread.CurrentCulture = _originalCulture;
+    public void Dispose()
+    {
+        Thread.CurrentThread.CurrentCulture = _originalCulture;
+        Thread.CurrentThread.CurrentUICulture = _originalUiCulture;
+    }
 
     private static void SetCulture(string cultureName)
     {
-        Thread.CurrentThread.CurrentCulture = new CultureInfo(cultureName);
-        Thread.CurrentThread.CurrentUICulture = new CultureInfo(cultureName);
+        var culture = new CultureInfo(cultureName);
+        Thread.CurrentThread.CurrentCulture = culture;
+        Thread.CurrentThread.CurrentUICulture = culture;
     }
 }
