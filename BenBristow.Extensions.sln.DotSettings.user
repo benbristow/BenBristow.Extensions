@@ -1,4 +1,9 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=073a9b3e_002D6201_002D4696_002D83c9_002Dda41a31b44b9/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="DateTimeOffsetExtensionsTests" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;xUnit::AC8F7893-AB45-493B-B616-9E39FE4447C4::net8.0::BenBristow.Extensions.UnitTests.DateTimeOffsetExtensionsTests&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=0fa7be44_002De550_002D4b96_002D91fd_002D84c560ed39b2/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsLocked="True" Name="All tests from EnumExtensionsTests.cs" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
   &lt;Or&gt;
     &lt;ProjectFile&gt;AC8F7893-AB45-493B-B616-9E39FE4447C4/f:EnumExtensionsTests.cs&lt;/ProjectFile&gt;
